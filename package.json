@@ -1,0 +1,24 @@
+{
+  "name": "h5-logutils",
+  "version": "1.0.0",
+  "description": "h5日志工具类，可以控制日志输入以及筛选日志",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qyjandroid/h5-logutils.git"
+  },
+  "keywords": [
+    "h5日志",
+    "日志工具类",
+    "logUtils"
+  ],
+  "author": "quanyj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qyjandroid/h5-logutils/issues"
+  },
+  "homepage": "https://github.com/qyjandroid/h5-logutils#readme"
+}
