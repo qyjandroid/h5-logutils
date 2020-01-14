@@ -1,10 +1,11 @@
 import Log from "./Log";
+import LogLevel, { LogLeve_ENUM } from "./LogLevel";
 
 /*
  * @Author: quanyj
  * @Date: 2020-01-07 17:32:37
  * @Last Modified by: quanyj
- * @Last Modified time: 2020-01-14 15:03:47
+ * @Last Modified time: 2020-01-14 17:39:31
  */
 
 
@@ -13,13 +14,24 @@ class LogUtil {
 
     private defaultLogOption = { enabled: true, useColors: false, isNodeEnv: false };
 
+    private logLevelInstance;
+
 
     constructor() {
+        LogLevel.setLogLevel(LogLeve_ENUM.LOG);
         // 初始化是否可以使用颜色
         this.defaultLogOption.useColors = this.useColors();
         // 初始化是否node环境
         this.defaultLogOption.isNodeEnv = this.checkIsNode();
-        console.log("执行")
+
+    }
+    /**
+     *
+     * 设置全局日志过滤等级
+     * @memberof LogUtil
+     */
+    setLogLevel = (logLevel: LogLeve_ENUM) => {
+        LogLevel.setLogLevel(logLevel);
     }
 
     checkIsNode = () => {

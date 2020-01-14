@@ -1,14 +1,8 @@
+import { LogLeve_ENUM } from "./LogLevel";
 export interface LogOptions {
     enabled: boolean;
     useColors: boolean;
     isNodeEnv: boolean;
-}
-export declare enum LogLevel {
-    LOG = 1,
-    DEBUG = 2,
-    INFO = 3,
-    WARN = 4,
-    ERROR = 5
 }
 export default class Log {
     private name;
@@ -24,6 +18,6 @@ export default class Log {
     warn: (...args: any[]) => void;
     error: (...args: any[]) => void;
     checkOutLog: (logLevel: any) => boolean;
-    formatArgs: (logType: LogLevel, args: any[]) => void;
+    formatArgs: (logType: LogLeve_ENUM, args: any[]) => void;
     coerce: (val: string | Error) => string;
 }

@@ -1,31 +1,36 @@
 {
-    "name": "h5-logutils",
-    "version": "1.0.0",
-    "description": "h5日志工具类，可以控制日志输入以及筛选日志",
-    "main": "build/cmjs/index.js",
-    "module": "build/es6/index.js",
-    "scripts": {
-        "build:cmjs": "tsc -P tsconfig.json --sourcemap false --module commonjs --outDir build/cmjs",
-        "build:es6": "tsc -P tsconfig.json --sourcemap false --module ES6 --outDir build/es6",
-        "build:web": "browserify build/cmjs/index.js --standalone LogUtils -o build/web/h5LogUtils.js",
-        "build": "npm run build:cmjs && npm run build:es6 && npm run build:web"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/qyjandroid/h5-logutils.git"
-    },
-    "keywords": [
-        "h5日志",
-        "日志工具类",
-        "logUtils"
-    ],
-    "author": "quanyj",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/qyjandroid/h5-logutils/issues"
-    },
-    "homepage": "https://github.com/qyjandroid/h5-logutils#readme",
-    "devDependencies": {
-        "browserify": "^16.5.0"
-    }
+  "name": "h5-logutils",
+  "version": "1.0.0",
+  "description": "h5日志工具类，可以控制日志输入以及筛选日志",
+  "main": "build/cmjs/index.js",
+  "module": "build/es6/index.js",
+  "scripts": {
+    "build:cmjs": "tsc -P tsconfig.json --sourcemap false --module commonjs --outDir build/cmjs",
+    "build:es6": "tsc -P tsconfig.json --sourcemap false --module ES6 --outDir build/es6",
+    "build:web": "rollup -c ./rollup.config.js",
+    "build": "npm run build:cmjs && npm run build:es6 && npm run build:web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qyjandroid/h5-logutils.git"
+  },
+  "keywords": [
+    "h5日志",
+    "日志工具类",
+    "logUtils"
+  ],
+  "author": "quanyj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qyjandroid/h5-logutils/issues"
+  },
+  "homepage": "https://github.com/qyjandroid/h5-logutils#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  }
 }

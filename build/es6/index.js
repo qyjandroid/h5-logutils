@@ -10,11 +10,15 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import Log from "./Log";
+import LogLevel, { LogLeve_ENUM } from "./LogLevel";
 var LogUtil = (function () {
     function LogUtil() {
         var _this = this;
         this.instances = {};
         this.defaultLogOption = { enabled: true, useColors: false, isNodeEnv: false };
+        this.setLogLevel = function (logLevel) {
+            LogLevel.setLogLevel(logLevel);
+        };
         this.checkIsNode = function () {
             return false;
         };
@@ -76,6 +80,7 @@ var LogUtil = (function () {
                 delete _this.instances[namespaces];
             }
         };
+        LogLevel.setLogLevel(LogLeve_ENUM.LOG);
         this.defaultLogOption.useColors = this.useColors();
         this.defaultLogOption.isNodeEnv = this.checkIsNode();
     }

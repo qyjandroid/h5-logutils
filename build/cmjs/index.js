@@ -13,13 +13,24 @@ var __assign = (this && this.__assign) || function () {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var Log_1 = __importDefault(require("./Log"));
+var LogLevel_1 = __importStar(require("./LogLevel"));
 var LogUtil = (function () {
     function LogUtil() {
         var _this = this;
         this.instances = {};
         this.defaultLogOption = { enabled: true, useColors: false, isNodeEnv: false };
+        this.setLogLevel = function (logLevel) {
+            LogLevel_1.default.setLogLevel(logLevel);
+        };
         this.checkIsNode = function () {
             return false;
         };
@@ -81,9 +92,9 @@ var LogUtil = (function () {
                 delete _this.instances[namespaces];
             }
         };
+        LogLevel_1.default.setLogLevel(LogLevel_1.LogLeve_ENUM.LOG);
         this.defaultLogOption.useColors = this.useColors();
         this.defaultLogOption.isNodeEnv = this.checkIsNode();
-        console.log("执行");
     }
     return LogUtil;
 }());

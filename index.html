@@ -12,10 +12,12 @@
     <div>测试日志</div>
     <script src="./build/web/h5LogUtils.js"></script>
     <script>
+        window.LogUtils.setLogLevel(4);
+        var logUtils = window.LogUtils.create("app");
+        logUtils.error("aaaa");
 
-        var logUtils = window.LogUtils.default.create("app");
-        logUtils.info("aaaa");
-
+        var logUtils2 = window.LogUtils.create("app:2");
+        logUtils2.info("aaaa2");
 
     </script>
 </body>

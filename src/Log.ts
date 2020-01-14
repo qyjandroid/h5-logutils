@@ -1,3 +1,5 @@
+import LogLevel, { LogLeve_ENUM } from "./LogLevel";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
@@ -6,7 +8,7 @@
  * @Author: quanyj
  * @Date: 2020-01-07 17:38:14
  * @Last Modified by: quanyj
- * @Last Modified time: 2020-01-14 15:18:50
+ * @Last Modified time: 2020-01-14 17:43:58
  */
 export interface LogOptions {
     /**
@@ -33,13 +35,7 @@ export interface LogOptions {
     isNodeEnv: boolean;
 }
 
-export enum LogLevel {
-    LOG = 1,
-    DEBUG = 2,
-    INFO = 3,
-    WARN = 4,
-    ERROR = 5
-}
+
 
 const colors = {
     1: "#00CCB1",
@@ -103,54 +99,54 @@ export default class Log {
     }
 
     log = (...args: any[]) => {
-        const flag = this.checkOutLog(LogLevel.LOG);
+        const flag = this.checkOutLog(LogLeve_ENUM.LOG);
         if (flag) {
-            this.formatArgs(LogLevel.LOG, args);
+            this.formatArgs(LogLeve_ENUM.LOG, args);
             console.log(...args);
         }
     }
 
     debug = (...args: any[]) => {
-        const flag = this.checkOutLog(LogLevel.DEBUG);
+        const flag = this.checkOutLog(LogLeve_ENUM.DEBUG);
         if (flag) {
-            this.formatArgs(LogLevel.DEBUG, args);
+            this.formatArgs(LogLeve_ENUM.DEBUG, args);
             console.debug(...args);
         }
     }
 
     info = (...args: any[]) => {
-        const flag = this.checkOutLog(LogLevel.INFO);
+        const flag = this.checkOutLog(LogLeve_ENUM.INFO);
         if (flag) {
-            this.formatArgs(LogLevel.INFO, args);
+            this.formatArgs(LogLeve_ENUM.INFO, args);
             console.info(...args);
         }
     }
 
     warn = (...args: any[]) => {
-        const flag = this.checkOutLog(LogLevel.WARN);
+        const flag = this.checkOutLog(LogLeve_ENUM.WARN);
         if (flag) {
-            this.formatArgs(LogLevel.WARN, args);
+            this.formatArgs(LogLeve_ENUM.WARN, args);
             console.warn(...args);
         }
     }
 
     error = (...args: any[]) => {
-        const flag = this.checkOutLog(LogLevel.ERROR);
+        const flag = this.checkOutLog(LogLeve_ENUM.ERROR);
         if (flag) {
-            this.formatArgs(LogLevel.ERROR, args);
+            this.formatArgs(LogLeve_ENUM.ERROR, args);
             console.error(...args);
         }
     }
 
     checkOutLog = (logLevel: any) => {
-        //LOG_LEVEL ||
-        if (logLevel >= LogLevel[(window as any).LOG_LEVEL || "LOG"] && this.enabled) {
+        const curGlobalLevel = LogLevel.getLogLevel();
+        if (logLevel >= curGlobalLevel && this.enabled) {
             return true;
         }
         return false;
     }
 
-    formatArgs = (logType: LogLevel, args: any[]) => {
+    formatArgs = (logType: LogLeve_ENUM, args: any[]) => {
         args[0] = this.coerce(args[0]);
 
         if (typeof args[0] !== 'string') {

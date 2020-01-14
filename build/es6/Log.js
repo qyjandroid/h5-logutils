@@ -1,11 +1,4 @@
-export var LogLevel;
-(function (LogLevel) {
-    LogLevel[LogLevel["LOG"] = 1] = "LOG";
-    LogLevel[LogLevel["DEBUG"] = 2] = "DEBUG";
-    LogLevel[LogLevel["INFO"] = 3] = "INFO";
-    LogLevel[LogLevel["WARN"] = 4] = "WARN";
-    LogLevel[LogLevel["ERROR"] = 5] = "ERROR";
-})(LogLevel || (LogLevel = {}));
+import LogLevel, { LogLeve_ENUM } from "./LogLevel";
 var colors = {
     1: "#00CCB1",
     2: "#0099FF",
@@ -42,9 +35,9 @@ var Log = (function () {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            var flag = _this.checkOutLog(LogLevel.LOG);
+            var flag = _this.checkOutLog(LogLeve_ENUM.LOG);
             if (flag) {
-                _this.formatArgs(LogLevel.LOG, args);
+                _this.formatArgs(LogLeve_ENUM.LOG, args);
                 console.log.apply(console, args);
             }
         };
@@ -53,9 +46,9 @@ var Log = (function () {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            var flag = _this.checkOutLog(LogLevel.DEBUG);
+            var flag = _this.checkOutLog(LogLeve_ENUM.DEBUG);
             if (flag) {
-                _this.formatArgs(LogLevel.DEBUG, args);
+                _this.formatArgs(LogLeve_ENUM.DEBUG, args);
                 console.debug.apply(console, args);
             }
         };
@@ -64,9 +57,9 @@ var Log = (function () {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            var flag = _this.checkOutLog(LogLevel.INFO);
+            var flag = _this.checkOutLog(LogLeve_ENUM.INFO);
             if (flag) {
-                _this.formatArgs(LogLevel.INFO, args);
+                _this.formatArgs(LogLeve_ENUM.INFO, args);
                 console.info.apply(console, args);
             }
         };
@@ -75,9 +68,9 @@ var Log = (function () {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            var flag = _this.checkOutLog(LogLevel.WARN);
+            var flag = _this.checkOutLog(LogLeve_ENUM.WARN);
             if (flag) {
-                _this.formatArgs(LogLevel.WARN, args);
+                _this.formatArgs(LogLeve_ENUM.WARN, args);
                 console.warn.apply(console, args);
             }
         };
@@ -86,14 +79,15 @@ var Log = (function () {
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
-            var flag = _this.checkOutLog(LogLevel.ERROR);
+            var flag = _this.checkOutLog(LogLeve_ENUM.ERROR);
             if (flag) {
-                _this.formatArgs(LogLevel.ERROR, args);
+                _this.formatArgs(LogLeve_ENUM.ERROR, args);
                 console.error.apply(console, args);
             }
         };
         this.checkOutLog = function (logLevel) {
-            if (logLevel >= LogLevel[LOG_LEVEL || window.LOG_LEVEL || "LOG"] && _this.enabled) {
+            var curGlobalLevel = LogLevel.getLogLevel();
+            if (logLevel >= curGlobalLevel && _this.enabled) {
                 return true;
             }
             return false;
