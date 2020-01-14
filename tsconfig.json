@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "target": "ES5", //将编译的.ts文件编译为指定标准js
+        "declaration": true,
+        "charset": "utf8",
+        "module": "commonjs",
+        "diagnostics": true,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "./build",
+        "lib": ["dom", "es5", "es2015", "es2016"],
+        "listEmittedFiles": true,
+        "allowUnreachableCode": true, //允许代码中途return产生无法执行代码
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "allowUmdGlobalAccess": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+}
