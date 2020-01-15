@@ -19,6 +19,9 @@ var LogUtil = (function () {
         this.setLogLevel = function (logLevel) {
             LogLevel.setLogLevel(logLevel);
         };
+        this.getAllLogLevel = function () {
+            return LogLeve_ENUM;
+        };
         this.checkIsNode = function () {
             return false;
         };

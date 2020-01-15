@@ -6,6 +6,7 @@ declare class LogUtil {
     private logLevelInstance;
     constructor();
     setLogLevel: (logLevel: LogLeve_ENUM) => void;
+    getAllLogLevel: () => typeof LogLeve_ENUM;
     checkIsNode: () => boolean;
     useColors: () => any;
     create: (namespaces: string, LogOptions?: {}) => Log;

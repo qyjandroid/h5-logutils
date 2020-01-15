@@ -8,7 +8,8 @@
     "build:cmjs": "tsc -P tsconfig.json --sourcemap false --module commonjs --outDir build/cmjs",
     "build:es6": "tsc -P tsconfig.json --sourcemap false --module ES6 --outDir build/es6",
     "build:web": "rollup -c ./rollup.config.js",
-    "build": "npm run build:cmjs && npm run build:es6 && npm run build:web"
+    "build": "npm run build:cmjs && npm run build:es6 && npm run build:web",
+    "test": "parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup-plugin-uglify": "^6.0.4",
+    "typescript": "^3.7.4"
   }
 }

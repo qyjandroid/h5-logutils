@@ -5,7 +5,7 @@ import LogLevel, { LogLeve_ENUM } from "./LogLevel";
  * @Author: quanyj
  * @Date: 2020-01-07 17:32:37
  * @Last Modified by: quanyj
- * @Last Modified time: 2020-01-14 17:39:31
+ * @Last Modified time: 2020-01-14 18:16:09
  */
 
 
@@ -32,6 +32,14 @@ class LogUtil {
      */
     setLogLevel = (logLevel: LogLeve_ENUM) => {
         LogLevel.setLogLevel(logLevel);
+    }
+    /**
+     *
+     * 获取所有的日志等级
+     * @memberof LogUtil
+     */
+    getAllLogLevel = () => {
+        return LogLeve_ENUM;
     }
 
     checkIsNode = () => {
