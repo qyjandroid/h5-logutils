@@ -5,12 +5,12 @@
 ## 安装
 
 ```bash
-$ npm install debug
+$ npm install h5-logutils -S
 ```
 
 ## 引用示例
 
-#### 直接引用 js 压缩文件
+#### 直接引用 build/web/h5LogUtils.js 压缩文件
 
 ```html
 <body>
@@ -37,7 +37,7 @@ $ npm install debug
 #### require 方式引入
 
 ```js
-const LogUtils = require("./build/cmjs").default; // commonjs
+const LogUtils = require("h5-logutils").default; // commonjs
 //1.获取Log等级枚举对象。
 const logLevelEnum = LogUtils.getAllLogLevel();
 //2.设置筛选的log等级
@@ -55,7 +55,7 @@ app1.error("error");
 #### import 方式引入
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 //1.获取Log等级枚举对象。
 const logLevelEnum = LogUtils.getAllLogLevel();
 //2.设置筛选的log等级
@@ -79,7 +79,7 @@ Example
 app.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 //1.获取全部log等级
 const logLevelEnum = LogUtils.getAllLogLevel();
 console.log(logLevelEnum);
@@ -90,7 +90,7 @@ LogUtils.setLogLevel(logLevelEnum.WARN);
 a.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 const logA = LogUtils.create("a");
 logA.log("log");
 logA.debug("debug");
@@ -102,7 +102,7 @@ logA.error("error");
 b.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 const logB = LogUtils.create("b");
 logB.log("log");
 logB.debug("debug");
@@ -118,7 +118,7 @@ Example
 a.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 var logA = LogUtils.create("worker:a");
 logA.log("log");
 logA.debug("debug");
@@ -130,7 +130,7 @@ logA.error("error");
 b.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 var logA = LogUtils.create("worker:b");
 logA.log("log");
 logA.debug("debug");
@@ -142,7 +142,7 @@ logA.error("error");
 c.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 var logB = LogUtils.create("c");
 logB.log("log");
 logB.debug("debug");
@@ -154,7 +154,7 @@ logB.error("error");
 app.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 //1:根据业务名称 worker 过滤日志
 LogUtils.enable("worker:*");
 
@@ -172,7 +172,7 @@ Example
 a.js:
 
 ```js
-import LogUtils from "./build/es6"; // ES6
+import LogUtils from "h5-logutils"; // ES6
 var logA = LogUtils.create("worker:a");
 // 打印 LOG 日志
 logA.log("log");
