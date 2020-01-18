@@ -27,7 +27,7 @@ var LogUtil = (function () {
     function LogUtil() {
         var _this = this;
         this.instances = {};
-        this.defaultLogOption = { enabled: true, useColors: false, isNodeEnv: false };
+        this.defaultLogOption = { enabled: true, useColors: false, isNodeEnv: false, names: [], skips: [] };
         this.setLogLevel = function (logLevel) {
             LogLevel_1.default.setLogLevel(logLevel);
         };
@@ -60,7 +60,7 @@ var LogUtil = (function () {
             if (instance) {
                 return instance;
             }
-            instance = new Log_1.default(namespaces, __assign(__assign({}, _this.defaultLogOption), LogOptions));
+            instance = new Log_1.default(namespaces, __assign(__assign(__assign({}, _this.defaultLogOption), LogOptions), { names: _this.names, skips: _this.skips }));
             _this.instances[namespaces] = instance;
             return instance;
         };
@@ -88,6 +88,8 @@ var LogUtil = (function () {
                 var instance = _this.instances[namespacesItem];
                 instance.setEnabled(skips, names);
             }
+            _this.names = names;
+            _this.skips = skips;
         };
         this.destroy = function (namespaces) {
             var instance = _this.instances[namespaces];
@@ -98,6 +100,8 @@ var LogUtil = (function () {
         LogLevel_1.default.setLogLevel(LogLevel_1.LogLeve_ENUM.LOG);
         this.defaultLogOption.useColors = this.useColors();
         this.defaultLogOption.isNodeEnv = this.checkIsNode();
+        this.names = [];
+        this.skips = [];
     }
     return LogUtil;
 }());

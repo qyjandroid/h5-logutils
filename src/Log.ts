@@ -99,13 +99,11 @@ export default class Log {
         let i;
         let len;
         for (i = 0, len = skips.length; i < len; i += 1) {
-            //console.log(this.name, "====", skips[i]);
             if (skips[i].test(this.name)) {
                 this.enabled = false;
                 return;
             }
         }
-        //console.log(this.name, "===匹配name=", names);
         //没有被规则禁用
         if (names.length > 0) {
             for (i = 0, len = names.length; i < len; i += 1) {

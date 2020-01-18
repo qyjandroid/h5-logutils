@@ -1,13 +1,13 @@
 // import LogUtils from "./build/es6"   // ES6
-// const { LogUtils, LogLevel } = require("./build/cmjs").default; // commonjs
+const LogUtils = require("./build/cmjs").default; // commonjs
 // console.log("LogUtils==", LogUtils, "===hhh==", LogLevel)
 
-import LogUtils from "./build/es6/index";
+//import LogUtils from "./build/es6/index";
 const logLevelEnum = LogUtils.getAllLogLevel();
 
 //2.设置筛选的log等级
 LogUtils.setLogLevel(logLevelEnum.INFO);
-LogUtils.enable("-*");
+LogUtils.enable("app*");
 //创建app1 log对象
 const app1 = LogUtils.create("app:1");
 //3.打印 log 等级日志

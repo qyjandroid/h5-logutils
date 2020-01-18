@@ -3,6 +3,8 @@ export interface LogOptions {
     enabled: boolean;
     useColors: boolean;
     isNodeEnv: boolean;
+    names: RegExp[];
+    skips: RegExp[];
 }
 export default class Log {
     private name;

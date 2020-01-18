@@ -4,6 +4,8 @@ declare class LogUtil {
     private instances;
     private defaultLogOption;
     private logLevelInstance;
+    private names;
+    private skips;
     constructor();
     setLogLevel: (logLevel: LogLeve_ENUM) => void;
     getAllLogLevel: () => typeof LogLeve_ENUM;
