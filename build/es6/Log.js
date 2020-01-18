@@ -15,20 +15,26 @@ var Log = (function () {
                 _this.enabled = true;
                 return;
             }
-            var enabled = false;
             var i;
             var len;
             for (i = 0, len = skips.length; i < len; i += 1) {
                 if (skips[i].test(_this.name)) {
-                    enabled = false;
+                    _this.enabled = false;
+                    return;
                 }
             }
-            for (i = 0, len = names.length; i < len; i += 1) {
-                if (names[i].test(_this.name)) {
-                    enabled = true;
+            if (names.length > 0) {
+                for (i = 0, len = names.length; i < len; i += 1) {
+                    if (names[i].test(_this.name)) {
+                        _this.enabled = true;
+                        return;
+                    }
                 }
+                _this.enabled = false;
             }
-            _this.enabled = enabled;
+            else {
+                _this.enabled = true;
+            }
         };
         this.log = function () {
             var args = [];
@@ -117,6 +123,7 @@ var Log = (function () {
         this.enabled = options.enabled || true;
         this.useColors = options.useColors;
         this.isNodeEnv = options.isNodeEnv;
+        this.setEnabled(options.skips, options.names);
     }
     return Log;
 }());

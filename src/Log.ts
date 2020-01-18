@@ -33,6 +33,20 @@ export interface LogOptions {
      * @memberof LogOptions
      */
     isNodeEnv: boolean;
+    /**
+     *
+     * 显示日志条件
+     * @type {string[]}
+     * @memberof LogOptions
+     */
+    names: RegExp[];
+    /**
+     *
+     * 过滤日志条件
+     * @type {string[]}
+     * @memberof LogOptions
+     */
+    skips: RegExp[];
 }
 
 
@@ -54,14 +68,17 @@ export default class Log {
 
     private isNodeEnv: boolean;
 
+
     constructor(name, options: LogOptions) {
         this.name = name;
         this.enabled = options.enabled || true;
         this.useColors = options.useColors;
         this.isNodeEnv = options.isNodeEnv;
+        this.setEnabled(options.skips, options.names);
     }
 
     /**
+     * 
      *
      * 获取log实例的名称
      * @memberof Log
@@ -79,23 +96,32 @@ export default class Log {
             this.enabled = true;
             return;
         }
-        let enabled = false;
         let i;
         let len;
-
         for (i = 0, len = skips.length; i < len; i += 1) {
+            //console.log(this.name, "====", skips[i]);
             if (skips[i].test(this.name)) {
-                enabled = false;
+                this.enabled = false;
+                return;
             }
         }
-
-        for (i = 0, len = names.length; i < len; i += 1) {
-            if (names[i].test(this.name)) {
-                enabled = true;
+        //console.log(this.name, "===匹配name=", names);
+        //没有被规则禁用
+        if (names.length > 0) {
+            for (i = 0, len = names.length; i < len; i += 1) {
+                if (names[i].test(this.name)) {
+                    //规则中包含的显示。
+                    this.enabled = true;
+                    return;
+                }
             }
+            //规则中不包含的隐藏
+            this.enabled = false;
+        } else {
+            //空数组显示
+            this.enabled = true;
         }
 
-        this.enabled = enabled;
     }
 
     log = (...args: any[]) => {

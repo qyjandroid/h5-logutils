@@ -111,7 +111,9 @@ logB.warn("warn");
 logB.error("error");
 ```
 
-#### LogUtils 允许您过滤日志。
+#### LogUtils 允许您过滤日志
+
+#### 规则 ( "_" 显示全部, "-_" 隐藏全部, "-a" 隐藏 a, "a,b", 显示 a 和 b, "a,-b",显示 a 隐藏 b)。
 
 Example
 

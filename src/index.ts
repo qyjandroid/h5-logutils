@@ -12,10 +12,24 @@ import LogLevel, { LogLeve_ENUM } from "./LogLevel";
 class LogUtil {
     private instances: { [key: string]: Log } = {};
 
-    private defaultLogOption = { enabled: true, useColors: false, isNodeEnv: false };
+    private defaultLogOption = { enabled: true, useColors: false, isNodeEnv: false, names: [], skips: [] };
 
     private logLevelInstance;
 
+    /**
+     *
+     * 需要显示的
+     * @private
+     * @memberof LogUtil
+     */
+    private names: RegExp[];
+    /**
+     *
+     * 需要排除的
+     * @private
+     * @memberof LogUtil
+     */
+    private skips: RegExp[];
 
     constructor() {
         LogLevel.setLogLevel(LogLeve_ENUM.LOG);
@@ -23,6 +37,8 @@ class LogUtil {
         this.defaultLogOption.useColors = this.useColors();
         // 初始化是否node环境
         this.defaultLogOption.isNodeEnv = this.checkIsNode();
+        this.names = [];
+        this.skips = [];
 
     }
     /**
@@ -94,7 +110,7 @@ class LogUtil {
         if (instance) {
             return instance;
         }
-        instance = new Log(namespaces, { ...this.defaultLogOption, ...LogOptions });
+        instance = new Log(namespaces, { ...this.defaultLogOption, ...LogOptions, names: this.names, skips: this.skips });
         this.instances[namespaces] = instance;
         return instance;
     }
@@ -129,6 +145,9 @@ class LogUtil {
             const instance = this.instances[namespacesItem];
             instance.setEnabled(skips, names);
         }
+        this.names = names;
+        this.skips = skips;
+
     }
 
     destroy = (namespaces: string) => {
