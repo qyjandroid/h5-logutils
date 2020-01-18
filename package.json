@@ -1,6 +1,6 @@
 {
     "name": "h5-logutils",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "h5日志工具类，可以控制日志输入以及筛选日志",
     "main": "build/cmjs/index.js",
     "module": "build/es6/index.js",
